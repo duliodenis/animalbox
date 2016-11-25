@@ -10,9 +10,23 @@ import UIKit
 
 class AnimalViewController: UIViewController {
     
+    @IBOutlet weak var imageView: UIImageView!
+    
+    
     override func motionEnded(_ motion: UIEventSubtype, with event: UIEvent?) {
         if event?.subtype == UIEventSubtype.motionShake {
-            print("Shake")
+            rotateBox()
+        }
+    }
+    
+    
+    func rotateBox() {
+        UIView.animate(withDuration: 1, animations: {
+            self.imageView.transform = CGAffineTransform(rotationAngle: -3)
+            }) { (true) in
+                UIView.animate(withDuration: 1, delay: 2, options: [], animations: {
+                    self.imageView.transform = CGAffineTransform(rotationAngle: 0)
+                    }, completion: nil)
         }
     }
     
